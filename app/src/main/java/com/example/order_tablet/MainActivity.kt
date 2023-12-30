@@ -72,6 +72,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
+        toggleDrawerLayout(binding.root)
     }
 }
