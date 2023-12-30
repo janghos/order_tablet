@@ -6,6 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.order_tablet.adapter.RvListAdapter
+import com.example.order_tablet.databinding.ActivityMainBinding
+import com.example.order_tablet.databinding.FragmentMainMenuBinding
+import com.example.order_tablet.model.RvListContent
 
 class MainMenuFragment : Fragment() {
 
@@ -14,19 +19,33 @@ class MainMenuFragment : Fragment() {
     }
 
     private lateinit var viewModel: MainMenuViewModel
+    private lateinit var binding: FragmentMainMenuBinding
+    private lateinit var rvListAdapter : RvListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_main_menu, container, false)
+        binding = FragmentMainMenuBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+        // Access views using binding object, e.g., binding.textView.text = "Hello, View Binding!"
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainMenuViewModel::class.java)
-        // TODO: Use the ViewModel
 
+
+        val items = mutableListOf<RvListContent>()
+        for(i in 0 until 10) {
+            items.add(RvListContent( text = "text$i"))
+        }
+        rvListAdapter = RvListAdapter(items, requireContext())
+        binding.rvList.adapter = rvListAdapter
+        binding.rvList.layoutManager = LinearLayoutManager(requireContext())
     }
 
 }

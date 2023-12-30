@@ -7,11 +7,15 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
 import androidx.core.view.get
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.order_tablet.databinding.ActivityMainBinding
+import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
 
     private lateinit var binding: ActivityMainBinding
     lateinit var toggle: ActionBarDrawerToggle
@@ -23,18 +27,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //1. 액션바대신에 툴바로 대체한다.
-        setSupportActionBar(binding.toolbar)
-        //2. ActionBarDrawerToggle 버튼적용
-        toggle = ActionBarDrawerToggle(this,binding.drawerlayout, R.string.navigation_drawer_open,  R.string.navigation_drawer_close)
-        //3.업버튼 활성화
-        //4. 토글 sync
-        toggle.syncState()
+        binding.contentMain.toolbar.ibToolbar.setOnClickListener {
+            toggleDrawerLayout(binding.root)
+        }
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.navView.setNavigationItemSelectedListener(this)
 
-        binding.navView.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
+        binding.navView.setNavigationItemSelectedListener {
+            when (it.itemId) {
                 R.id.nav_item1 -> {
                     replaceFragment(MainMenuFragment())
                     true
@@ -47,26 +47,31 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
-
     }
 
-    //5. 이 함수가 있어야 토글버튼을 누르면 Drawer가 들어갔다 나갔다한다.
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(toggle.onOptionsItemSelected(item)){
-            return true
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        Log.d(TAG, "onNavigationItemSelected: ${item.title}")
+        return true
+    }
+
+    private fun toggleDrawerLayout(drawerLayout: DrawerLayout) {
+
+        if(!drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.openDrawer(GravityCompat.START)
         }
-        return super.onOptionsItemSelected(item)
+        else {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
     }
 
     fun replaceFragment(fragment : Fragment) {
         try {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.main_display, fragment)
+                .replace(R.id.content_main, fragment)
                 .commit()
         } catch (e: Exception) {
             e.printStackTrace()
         }
-    }
 
+    }
 }
