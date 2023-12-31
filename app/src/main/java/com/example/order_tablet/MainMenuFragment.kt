@@ -12,6 +12,7 @@ import com.example.order_tablet.adapter.RvListAdapter
 import com.example.order_tablet.databinding.ActivityMainBinding
 import com.example.order_tablet.databinding.FragmentMainMenuBinding
 import com.example.order_tablet.model.RvListContent
+import com.example.order_tablet.util.LoadingDialog
 
 class MainMenuFragment : Fragment() {
 
@@ -21,6 +22,7 @@ class MainMenuFragment : Fragment() {
     private lateinit var viewModel: MainMenuViewModel
     private lateinit var binding: FragmentMainMenuBinding
     private lateinit var rvListAdapter : RvListAdapter
+    private var loadingDialog = LoadingDialog.newInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +39,10 @@ class MainMenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainMenuViewModel::class.java)
+
+        if(!loadingDialog.isAdded) {
+            loadingDialog.show(parentFragmentManager, tag)
+        }
         viewModel.requestImageListInfoData(5,20)
 
         viewModel.getImageListInfoData().observe(viewLifecycleOwner) {
@@ -56,6 +62,8 @@ class MainMenuFragment : Fragment() {
                 rvListAdapter = RvListAdapter(items, requireContext())
                 binding.rvList.adapter = rvListAdapter
                 binding.rvList.layoutManager = LinearLayoutManager(requireContext())
+
+                loadingDialog.dialog?.dismiss()
             }
         }
     }
