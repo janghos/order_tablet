@@ -1,17 +1,18 @@
-package com.example.order_tablet
+package com.example.order_tablet.activity
 
 import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
-import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.example.order_tablet.R
 import com.example.order_tablet.databinding.ActivityMainBinding
+import com.example.order_tablet.fragment.MainMenuFragment
+import com.example.order_tablet.fragment.SideMenuFragment
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {

@@ -9,11 +9,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="메인메뉴!!"
+        android:textSize="20dp"
         android:gravity="center"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_list"
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_list2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    </HorizontalScrollView>
 
 </LinearLayout>

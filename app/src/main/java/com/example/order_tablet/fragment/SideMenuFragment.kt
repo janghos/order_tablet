@@ -1,4 +1,4 @@
-package com.example.order_tablet
+package com.example.order_tablet.fragment
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.order_tablet.viewModel.MainMenuViewModel
+import com.example.order_tablet.R
 
 class SideMenuFragment : Fragment() {
 

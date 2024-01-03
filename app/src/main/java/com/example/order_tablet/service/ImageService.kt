@@ -1,4 +1,4 @@
-package com.example.order_tablet
+package com.example.order_tablet.service
 
 import com.example.order_tablet.model.ImageResultData
 import com.example.order_tablet.model.ImageResultDataItem

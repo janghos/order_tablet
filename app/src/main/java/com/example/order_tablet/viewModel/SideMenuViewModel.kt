@@ -1,4 +1,4 @@
-package com.example.order_tablet
+package com.example.order_tablet.viewModel
 
 import androidx.lifecycle.ViewModel
 

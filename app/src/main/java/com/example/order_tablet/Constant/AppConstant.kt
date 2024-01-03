@@ -1,4 +1,4 @@
-package com.example.order_tablet
+package com.example.order_tablet.Constant
 
 object AppConstant {
 

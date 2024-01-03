@@ -1,16 +1,9 @@
 package com.example.order_tablet.retrofit
 
-import android.media.Image
-import com.example.order_tablet.AppConstant
-import com.example.order_tablet.ImageService
-import com.example.order_tablet.model.ImageResultDataItem
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.squareup.moshi.JsonAdapter
+import com.example.order_tablet.Constant.AppConstant
+import com.example.order_tablet.service.ImageService
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import kotlinx.serialization.json.Json
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
